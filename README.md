@@ -101,14 +101,16 @@ This project provides a wide range of options for you to customize its behavior.
   
 ## Installation
 
+
+
+#### Linux
+
 ```bash
 git clone https://github.com/jbmiller10/CaptionFusionator.git
 ```
 ```bash
 cd CaptionFusionator
 ```
-
-#### Linux
 ```bash
 chmod +x setup.sh
 chmod +x run.sh
@@ -117,12 +119,18 @@ chmod +x run.sh
 
 #### Windows
 ```bash
+git clone https://github.com/jbmiller10/CaptionFusionator.git
+```
+```bash
+cd CaptionFusionator
+```
+```bash
 setup.bat
 ```
 
 ## Example Usage
 
-You can run this project by executing the `run.sh` script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
+You can run this project by executing the `run.sh` (linux) or `run.ps1` (Windoes) script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
 
 #### Linux
 ```bash
@@ -130,9 +138,9 @@ You can run this project by executing the `run.sh` script with your desired opti
 ```
 
 Or, using options in a config file:
-./run.sh --use_config_file ./config_file.txt
-
-You can run this project by executing the run.ps1 script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
+```bash
+./run.sh --use_config_file /config_file.txt
+```
 
 #### Windows
 ```bash
@@ -146,7 +154,7 @@ Or, using a config file
 ## TO-DO
 (in no particular order)
 
-- [ ] Create .bat counterparts to setup.sh & run.sh for Windows
+- [X] Create .bat counterparts to setup.sh & run.sh for Windows Thanks, @lrzjason!
 - [ ] Set better defaults to current modules
 - [ ] set default models based on user-defined VRAM value
 - [ ] Add MiniGPT4-Batch module

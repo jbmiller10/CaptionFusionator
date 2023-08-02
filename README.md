@@ -130,7 +130,7 @@ setup.bat
 
 ## Example Usage
 
-You can run this project by executing the `run.sh` (linux) or `run.ps1` (Windoes) script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
+You can run this project by executing the `run.sh` (linux) or `run.ps1` (Windows) script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
 
 #### Linux
 ```bash

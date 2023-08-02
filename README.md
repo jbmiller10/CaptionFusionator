@@ -108,14 +108,14 @@ git clone https://github.com/jbmiller10/CaptionFusionator.git
 cd CaptionFusionator
 ```
 
-####Linux
+#### Linux
 ```bash
 chmod +x setup.sh
 chmod +x run.sh
 ./setup.sh
 ```
 
-####Windows
+#### Windows
 ```bash
 setup.bat
 ```
@@ -124,7 +124,7 @@ setup.bat
 
 You can run this project by executing the `run.sh` script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
 
-####Linux
+#### Linux
 ```bash
 ./run.sh --input_directory /path/to/your/image/dir --use_blip2 --use_open_flamingo --use_wd14 --wd14_stack_models --summarize_with_llama
 ```
@@ -134,7 +134,7 @@ Or, using options in a config file:
 
 You can run this project by executing the run.ps1 script with your desired options. Here's an example command that utilizes multiple models and summarizes with a llama-derived model:
 
-####Windows
+#### Windows
 ```bash
 ./run.ps1 --input_directory /path/to/your/image/dir --use_blip2 --use_open_flamingo --use_wd14 --wd14_stack_models --summarize_with_llama
 ```

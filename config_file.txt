@@ -1,4 +1,5 @@
 # basic options
+input_directory=path\to\input_directory
 use_blip2=true
 use_wd14=true
 use_open_flamingo=true
@@ -15,4 +16,3 @@ blip2_min_tokens=20
 blip2_top_p=1.0
  
 #and so on
-input_directory=path\to\input_directory

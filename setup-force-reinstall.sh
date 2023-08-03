@@ -16,8 +16,8 @@ printf '\n*****************************************************************\n\n'
 source "$base_directory/blip2/venv_blip2/bin/activate"
 cd "$base_directory/blip2"
 if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    pip install -r requirements.txt --force-reinstall
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --force-reinstall
 fi
 deactivate
 printf '\n\n*****************************************************************\n'
@@ -26,8 +26,8 @@ printf '\n*****************************************************************\n\n'
 source "$base_directory/open_flamingo/venv_open_flamingo/bin/activate"
 cd "$base_directory/open_flamingo"
 if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    pip install -r requirements.txt --force-reinstall
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --force-reinstall
 fi
 deactivate
 
@@ -37,8 +37,8 @@ printf '\n*****************************************************************\n\n'
 source "$base_directory/wd14/venv_wd14/bin/activate"
 cd "$base_directory/wd14"
 if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    pip install -r requirements.txt --force-reinstall
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --force-reinstall
 fi
 deactivate
 printf '\n\n*****************************************************************\n'
@@ -50,8 +50,8 @@ export CMAKE_ARGS="-DLLAMA_CUBLAS=on"
 export FORCE_CMAKE=1
 pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir --verbose
 if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+    pip install -r requirements.txt --force-reinstall
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --force-reinstall
     
 fi
 deactivate

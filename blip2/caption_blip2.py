@@ -68,7 +68,7 @@ if __name__ == "__main__":
     print('****STARTING BLIP2 PASS****')
     parser = argparse.ArgumentParser(description='Generate captions for images in a directory')
     parser.add_argument('--dir', required=True, help='Directory of images')
-    parser.add_argument('--model', default="blip2_t5/pretrain_flant5xxl", help='Model name and type, separated by "/"')
+    parser.add_argument('--model', default="blip2_opt/caption_coco_opt6.7b", help='Model name and type, separated by "/"')
     parser.add_argument('--use_nucleus_sampling', default=False, help='whether or not to use nucleus sampling. Defaults to false')
     parser.add_argument('--max_length', default=48, help='max blip2 caption length')
     parser.add_argument('--min_length', default=False, help='min blip2 caption length')

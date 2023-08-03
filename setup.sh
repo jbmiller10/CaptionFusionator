@@ -43,7 +43,9 @@ printf 'installing summarize reqs'
 printf '\n*****************************************************************\n\n'
 source "$base_directory/summarize/venv_summarize/bin/activate"
 cd "$base_directory/summarize"
-CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir --verbose
+CMAKE_ARGS="-DLLAMA_CUBLAS=on"
+FORCE_CMAKE=1
+pip install llama-cpp-python --force-reinstall --upgrade --no-cache-dir --verbose
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt --force-reinstall --upgrade --no-cache-dir
     

@@ -3,8 +3,9 @@
 use_blip2=true
 use_open_flamingo=true
 use_wd14=true
-#summarize_with_gpt=true #do not set both GPT and llama at the same time - they will overwrite each other
-summarize_with_llama=true #do not set both GPT and llama at the same time - they will overwrite each other
+#do not set both GPT and llama at the same time - they will overwrite each other
+#summarize_with_gpt=true
+summarize_with_llama=true
 #input_directory=your_path_here
 #output_directory=your_path_here
 ## wd14 options

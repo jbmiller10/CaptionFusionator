@@ -1,14 +1,55 @@
-# basic options
+###uncomment to set
+## basic options
 use_blip2=true
-use_wd14=true
 use_open_flamingo=true
-summarize_with_llama=true
-# wd14 options
+use_wd14=true
+#summarize_with_gpt=true #do not set both GPT and llama at the same time - they will overwrite each other
+summarize_with_llama=true #do not set both GPT and llama at the same time - they will overwrite each other
+#input_directory=your_path_here
+#output_directory=your_path_here
+## wd14 options
 wd14_stack_models=true
-wd14_threshold=0.5
-# blip2 options
-blip2_beams=4
-blip2_max_tokens=75
-blip2_min_tokens=20
-blip2_top_p=1.0
-#and so on
+#wd14_model=SmilingWolf/wd-v1-4-swinv2-tagger-v2
+#wd14_threshold=0.5
+#wd14_filter=your_value_here
+#wd14_output_extension=wd14cap
+## blip2 options
+#blip2_model=blip2_opt/caption_coco_opt6.7b
+#blip2_use_nucleus_sampling=false
+#blip2_beams=6
+#blip2_max_tokens=75
+#blip2_min_tokens=20
+#blip2_top_p=1.0
+#blip2_output_extension=b2cap
+## open flamingo options
+#flamingo_example_img_dir=your_path_here
+#flamingo_model=openflamingo/OpenFlamingo-9B-vitl-mpt7b
+#flamingo_min_new_tokens=20
+#flamingo_max_new_tokens=48
+#flamingo_num_beams=6
+#flamingo_prompt=Output:
+#flamingo_temperature=1.0
+#flamingo_top_k=0
+#flamingo_top_p=1.0
+#flamingo_repetition_penalty=1.0
+#flamingo_length_penalty=1.0
+#flamingo_output_extension=flamcap
+## summarization options
+#summarize_gpt_model=gpt-3.5-turbo
+#summarize_gpt_max_tokens=75
+#summarize_gpt_temperature=1.0
+#summarize_gpt_prompt_file_path=your_path_here
+#summarize_file_extensions=wd14cap flamcap b2cap
+#summarize_openai_api_key=your_value_here
+#summarize_llama_model_repo_id=TheBloke/StableBeluga2-70B-GGML
+#summarize_llama_model_filename=stablebeluga2-70b.ggmlv3.q2_K.bin
+#summarize_llama_prompt_filepath=your_path_here
+#summarize_llama_n_threads=4
+#summarize_llama_n_batch=512
+#summarize_llama_n_gpu_layers=55
+#summarize_llama_n_gqa=8
+#summarize_llama_max_tokens=75
+#summarize_llama_temperature=1.0
+#summarize_llama_top_p=1.0
+#summarize_llama_frequency_penalty=0
+#summarize_llama_top_presence_penalty=0

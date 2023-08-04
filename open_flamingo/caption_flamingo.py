@@ -139,6 +139,14 @@ def main(args):
                 generated_text = tokenizer.decode(generated_text[0][len(input_ids[0]):], skip_special_tokens=True)
                 generated_text = generated_text.split(output_prompt)[0]
 
+                is_repeat = False
+                for example in examples:
+                    if example[0].strip() == generated_text.strip():  # Checking for an exact match.
+                        is_repeat = True
+                        break
+                if is_repeat:  # Skip saving the caption if it's a verbatim repeat of an example caption
+                    continue
+
                 exec_time = time.time() - start_time
                 print(f"Caption:  {generated_text}")
 

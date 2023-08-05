@@ -5,7 +5,7 @@ from huggingface_hub import hf_hub_download
 from llama_cpp import Llama
 import argparse
 
-def process_images_and_captions(directory, prompt, caption_exts,hf_repo_id, hf_filename, n_threads, n_batch, n_gpu_layers, n_gqa, max_tokens, temperature, top_p, frequency_penalty, presence_penalty):
+def process_images_and_captions(directory, prompt_template, prompt, caption_exts, hf_repo_id, hf_filename, n_threads, n_batch, n_gpu_layers, n_gqa, max_tokens, temperature, top_p, frequency_penalty, presence_penalty):
     image_extensions = ["jpg", "jpeg", "png"]
     image_files = [f for ext in image_extensions for f in glob.glob(f"{directory}/*.{ext}")]
     
@@ -13,9 +13,9 @@ def process_images_and_captions(directory, prompt, caption_exts,hf_repo_id, hf_f
     # Load the Llama model
     lcpp_llm = Llama(
         model_path=model_path,
-        n_threads=n_threads, 
+        n_threads=n_threads,
         n_batch=n_batch,  # Should be between 1 and n_ctx
-        n_gpu_layers=n_gpu_layers,  
+        n_gpu_layers=n_gpu_layers,
         n_gqa=n_gqa,
         n_ctx=1024
     )
@@ -23,8 +23,10 @@ def process_images_and_captions(directory, prompt, caption_exts,hf_repo_id, hf_f
     for image_file in image_files:
         base_name = os.path.splitext(image_file)[0]
         print(base_name)
-        prompt_string = f"### SYSTEM: {prompt}\n\n### USER: "
 
+        # Build the captions and tags parts
+        caption_part = ""
+        tags_part = ""
         caption_number = 1
         for caption_ext in caption_exts:
             caption_file = f"{base_name}.{caption_ext}"
@@ -32,13 +34,18 @@ def process_images_and_captions(directory, prompt, caption_exts,hf_repo_id, hf_f
                 with open(caption_file, 'r') as f:
                     caption_text = f.read().strip()
                     if caption_ext == "wd14cap":
-                        prepend_text = "Tags: "
+                        tags_part = "Tags: " + caption_text
                     else:
-                        prepend_text = f"Caption {caption_number}: "
+                        caption_part += f"Caption {caption_number}: " + caption_text + "\n"
                         caption_number += 1
-                    prompt_string += prepend_text + caption_text + "\n"
 
-        prompt_string += "\n### ASSISTANT: "
+        # Substitute into the template
+        prompt_string = prompt_template.format(
+            SYSTEM=prompt,
+            CAPTIONS=caption_part,
+            TAGS=tags_part,
+            ASSISTANT=""
+        )
 
         if caption_number >= 1:
             # Generate response using Llama model
@@ -56,6 +63,7 @@ def process_images_and_captions(directory, prompt, caption_exts,hf_repo_id, hf_f
                 f.write(response['choices'][0]['text'])
                 print(response['choices'][0]['text'])
 
+
 def main():
     print('****STARTING LLAMA PASS****')
     parser = argparse.ArgumentParser(description="Process images and captions")
@@ -65,7 +73,8 @@ def main():
     parser.add_argument("--hf_filename", type=str, help="HF model filename",default="stablebeluga2-70b.ggmlv3.q2_K.bin") #just a random model for now
     #parser.add_argument("--model_path", type=str, help="path to llama model")
     parser.add_argument("--prompt_file_path", type=str,help="Path to txt file containing system prompt for the the model", default="llama_system_prompt.txt")
-    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap","humcap"])
+    parser.add_argument("--prompt_template_path", type=str, help="Path to the template file for formatting the prompt", default="llama_prompt_template.txt")
+    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap"])
     parser.add_argument("--n_batch", type=int, default=512)
     parser.add_argument("--n_threads", type=int, default=4)
     parser.add_argument("--n_gpu_layers", type=int, default=55)
@@ -76,8 +85,6 @@ def main():
     parser.add_argument("--frequency_penalty", type=float, default=0)
     parser.add_argument("--presence_penalty", type=float, default=0)
     
-    
-
     args = parser.parse_args()
 
     input_directory = args.input_dir
@@ -95,11 +102,16 @@ def main():
     frequency_penalty = args.frequency_penalty
     presence_penalty = args.presence_penalty
     
-    
+    print(args.caption_exts)
     
     #read in llama sys prompt file
     with open(args.prompt_file_path, 'r') as prompt_file:
        prompt = prompt_file.read().strip()
+
+    #read prompt template
+    with open(args.prompt_template_path, 'r') as template_file:
+        prompt_template = template_file.read().strip()
+
 
     if not output_directory:
         output_directory = input_directory
@@ -115,7 +127,7 @@ def main():
 
     os.chdir(output_directory)  # Change current working directory to output directory
 
-    process_images_and_captions(input_directory, prompt, caption_exts , hf_repo_id, hf_filename, n_threads, n_batch, n_gpu_layers, n_gqa, max_tokens, temperature, top_p, frequency_penalty, presence_penalty)
+    process_images_and_captions(input_directory, prompt_template, prompt, caption_exts , hf_repo_id, hf_filename, n_threads, n_batch, n_gpu_layers, n_gqa, max_tokens, temperature, top_p, frequency_penalty, presence_penalty)
 
 if __name__ == "__main__":
     main()

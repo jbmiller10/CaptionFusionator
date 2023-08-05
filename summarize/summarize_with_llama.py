@@ -107,11 +107,14 @@ def main():
     #read in llama sys prompt file
     with open(args.prompt_file_path, 'r') as prompt_file:
        prompt = prompt_file.read().strip()
+    print("Using prompt:")
+    print(prompt)
 
-    #read prompt template
+    # read prompt template
     with open(args.prompt_template_path, 'r') as template_file:
         prompt_template = template_file.read().strip()
-
+    print("Using prompt template:")
+    print(prompt_template)
 
     if not output_directory:
         output_directory = input_directory

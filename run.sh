@@ -192,6 +192,7 @@ fi
 # Print user arguments
 echo "User Arguments:"
 echo "$user_args"
+echo "$config_file"
 
 
 generate_blip2_options() {

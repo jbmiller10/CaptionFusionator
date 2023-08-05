@@ -102,6 +102,7 @@ while [[ "$#" -gt 0 ]]; do
         echo "--summarize_llama_top_p : top_p value to run llama model with Default: 1.0"
         echo "--summarize_llama_frequency_penalty : frequency penalty value to run llama model with Default: 0"
         echo "--summarize_llama_top_p : presence penalty value to run llama model with Default: 0"
+        echo "--summarize_llama_prompt_template_path : path to a template file that defines the template to use for your chosen llama model. See documentation for help. Default: llama_prompt_template.txt Default: 0"
         exit 0
         ;;
         --use_blip2) use_blip2=true; user_args="${user_args} --use_blip2" ;;
@@ -152,7 +153,8 @@ while [[ "$#" -gt 0 ]]; do
         --summarize_llama_temperature) summarize_llama_temperature="$2"; user_args="${user_args} --summarize_llama_temperature=$2"; shift ;;
         --summarize_llama_top_p) summarize_llama_top_p="$2"; user_args="${user_args} --summarize_llama_top_p=$2"; shift ;;
         --summarize_llama_frequency_penalty) summarize_llama_frequency_penalty="$2"; user_args="${user_args} --summarize_llama_frequency_penalty=$2"; shift ;;
-        --summarize_llama_presence_penalty) summarize_llama_presence_penalty="$2"; user_args="${user_args} --summarize_llama_presence_penalty=$2"; shift ;;                 
+        --summarize_llama_presence_penalty) summarize_llama_presence_penalty="$2"; user_args="${user_args} --summarize_llama_presence_penalty=$2"; shift ;;
+        --summarize_llama_prompt_template_path) summarize_llama_prompt_template_path="$2"; user_args="${user_args} --summarize_llama_prompt_template_path=$2"; shift ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
     shift
@@ -308,6 +310,7 @@ generate_summarize_with_llama_options() {
     local options=""
     [ -n "$input_directory" ] && options+=" --input_dir=$input_directory"
     [ -n "$output_directory" ] && options+=" --output_dir=$output_directory"
+    [ -n "$summarize_llama_prompt_template_path" ] && options+=" --prompt_template_path=$summarize_llama_prompt_template_path"
     [ -n "$summarize_llama_prompt_file_path" ] && options+=" --prompt_file_path=$summarize_llama_prompt_file_path"
     [ -n "$summarize_llama_model_repo_id" ] && options+=" --hf_repo_id=$summarize_llama_model_repo_id"
     [ -n "$summarize_llama_model_filename" ] && options+=" --hf_filename=$summarize_llama_model_filename"

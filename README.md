@@ -98,6 +98,7 @@ This project provides a wide range of options for you to customize its behavior.
 - `--summarize_llama_top_p`: top_p value to run llama model with Default: 1.0
 - `--summarize_llama_frequency_penalty`: frequency penalty value to run llama model with Default: 0
 - `--summarize_llama_top_presence_penalty`: presence penalty value to run llama model with Default: 0
+- `--summarize_llama_prompt_template_path`: path to a template file that defines the template to use for your chosen llama model. Prompt templates should contain the following variables, enclosed in curly braces: {SYSTEM}, {CAPTIONS}, {TAGS}, {ASSISTANT}. These will be filled in by the script with their appropriate values for each iteration. See summarize/llama_prompt_template.txt for the default example
   
 ## Installation
 

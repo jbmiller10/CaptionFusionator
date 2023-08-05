@@ -102,7 +102,7 @@ while [[ "$#" -gt 0 ]]; do
         echo "--summarize_llama_top_p : top_p value to run llama model with Default: 1.0"
         echo "--summarize_llama_frequency_penalty : frequency penalty value to run llama model with Default: 0"
         echo "--summarize_llama_top_p : presence penalty value to run llama model with Default: 0"
-        echo "--summarize_llama_prompt_template_path : path to a template file that defines the template to use for your chosen llama model. See documentation for help. Default: llama_prompt_template.txt Default: 0"
+        echo "--summarize_llama_prompt_template_path : path to a template file that defines the template to use for your chosen llama model. See documentation for help. Default: llama_prompt_template.txt"
         exit 0
         ;;
         --use_blip2) use_blip2=true; user_args="${user_args} --use_blip2" ;;

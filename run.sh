@@ -363,7 +363,7 @@ generate_described_options() {
 # Running described if set
 if [[ "$use_described" == "true" ]]; then
     source "$base_directory/blip2/venv_blip2/bin/activate"
-    cd "$base_directory/blip2/described"
+    cd "$base_directory/blip2/Described"
     
     options=$(generate_described_options)
     python3 described.py $options

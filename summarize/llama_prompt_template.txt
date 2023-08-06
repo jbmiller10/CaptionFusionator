@@ -1,0 +1,7 @@
+### SYSTEM: {SYSTEM}
+
+### USER: 
+{CAPTIONS}
+{TAGS}
+
+### ASSISTANT: {ASSISTANT}

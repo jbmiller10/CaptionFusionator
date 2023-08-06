@@ -54,3 +54,4 @@ wd14_stack_models=true
 #summarize_llama_top_p=1.0
 #summarize_llama_frequency_penalty=0
 #summarize_llama_top_presence_penalty=0
+#summarize_llama_prompt_template_path=/workspace/CaptionFusionator/summarize/llama_prompt_template.txt

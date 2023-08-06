@@ -360,7 +360,6 @@ generate_described_options() {
     
     echo "$options"
 }
-        described_workflow_path
 # Running described if set
 if [[ "$use_described" == "true" ]]; then
     source "$base_directory/blip2/venv_blip2/bin/activate"

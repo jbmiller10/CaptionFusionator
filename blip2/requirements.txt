@@ -13,4 +13,5 @@ sympy==1.12
 typing-extensions==4.7.1
 urllib3==2.0.4
 salesforce-lavis==1.0.2
-
+tqdm==4.65.0
+json5

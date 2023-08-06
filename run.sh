@@ -112,6 +112,7 @@ while [[ "$#" -gt 0 ]]; do
         exit 0
         ;;
         --use_blip2) use_blip2=true; user_args="${user_args} --use_blip2" ;;
+        --use_described) use_described=true; user_args="${user_args} --use_described" ;;
         --use_open_flamingo) use_open_flamingo=true; user_args="${user_args} --use_open_flamingo" ;;
         --use_wd14) use_wd14=true; user_args="${user_args} --use_wd14" ;;
         --summarize_with_gpt) summarize_with_gpt=true; user_args="${user_args} --summarize_with_gpt" ;;
@@ -133,9 +134,6 @@ while [[ "$#" -gt 0 ]]; do
         --described_model) blip2_model="$2"; user_args="${user_args} --described_model=$2"; shift ;;
         --described_workflow_path) blip2_beams="$2"; user_args="${user_args} --described_workflow_path=$2"; shift ;;
         --described_output_extension) described_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension},${described_output_extension}"; user_args="${user_args} --described_output_extension=$2"; shift ;;
-
-        
-        
         --flamingo_example_img_dir) flamingo_example_img_dir="$2"; user_args="${user_args} --flamingo_example_img_dir=$2"; shift ;;
         --flamingo_model) flamingo_model="$2"; user_args="${user_args} --flamingo_model=$2"; shift ;;
         --flamingo_min_new_tokens) flamingo_min_new_tokens="$2"; user_args="${user_args} --flamingo_min_new_tokens=$2"; shift ;;

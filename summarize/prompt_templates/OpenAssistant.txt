@@ -1,6 +1,6 @@
-<|prompter|>{SYSTEM}<|endoftext|>
-<|assistant|>Got it! I'm ready for my first batch of image information.<|endoftext|>
+<|prompter|>{SYSTEM}</s>
+<|assistant|>Got it! I'm ready for my first batch of image information.</s>
 <|prompter|>
 {CAPTIONS}
 {TAGS}
-<|endoftext|><|assistant|>{ASSISTANT}
+</s><|assistant|>{ASSISTANT}

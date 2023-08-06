@@ -397,6 +397,12 @@ while ($args.Length -gt 0) {
             $user_args = '{0} --summarize_llama_presence_penalty "{1}"' -f $user_args, $value
             continue
         }
+        '--summarize_llama_prompt_template_path'{
+            $options,$value,$args = $args
+            $summarize_llama_prompt_template_path=$value
+            $user_args = '{0} --summarize_llama_prompt_template_path "{1}"' -f $user_args, $value
+            continue
+        }
         default {
             Write-Host "Unknown parameter passed: $($args[0])"
             exit 1
@@ -587,6 +593,8 @@ function generate_summarize_with_llama_options {
     if (-not [string]::IsNullOrEmpty($summarize_llama_top_p)) { $options = "{0} --top_p {1}" -f $options,$summarize_llama_top_p }
     if (-not [string]::IsNullOrEmpty($summarize_llama_frequency_penalty)) { $options = "{0} --frequency_penalty {1}" -f $options,$summarize_llama_frequency_penalty }
     if (-not [string]::IsNullOrEmpty($summarize_llama_presence_penalty)) { $options = "{0} --presence_penalty {1}" -f $options,$summarize_llama_presence_penalty }
+    if (-not [string]::IsNullOrEmpty($summarize_llama_prompt_template_path)) { $options = "{0} --prompt_template_path {1}" -f $options,$summarize_llama_prompt_template_path }
+
     
     return $options.Remove(0,1) 
 }

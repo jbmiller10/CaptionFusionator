@@ -7,7 +7,8 @@ base_directory="$(dirname "$(readlink -f "$0")")"
 wd14_output_extension="wd14cap"
 blip2_output_extension="b2cap"
 flamingo_output_extension="flamcap"
-summarize_file_extensions="${wd14_output_extension}" "${flamingo_output_extension}" "${blip2_output_extension}"
+described_output_extension="descap"
+summarize_file_extensions="${wd14_output_extension}" "${flamingo_output_extension}" "${blip2_output_extension}" "${described_output_extension}"
 # A variable to store user arguments
 user_args=""
 config_file=""
@@ -50,6 +51,7 @@ while [[ "$#" -gt 0 ]]; do
         echo "Options:"
         echo "--use_config_file: absolute path to a config file containing arguments to be used. see example_config_file.txt"
         echo "--use_blip2: create blip2 captions of images in your input directory"
+        echo "--use_described: create captions using blip2 visual question answering (VQA.) This is provided by coreco's Describd script"
         echo "--use_open_flamingo: create open flamingo captions of images in your input directory"
         echo "--use_wd14: create wd14 tags for images in your input directory"
         echo "--summarize_with_gpt: use OpenAI's GPT to attempt to combine your caption files into one. Requires that summarize_openai_api_key argument be passed with a valid OpenAI API key OR the environment variable OPENAI_API_KEY be set with that value. *********WARNING: this can get expensive, especially if using GPT-4. You've been warned********"
@@ -70,6 +72,10 @@ while [[ "$#" -gt 0 ]]; do
         echo "--blip2_min_tokens: min_tokens value to be passed to blip2 model Default: 20"
         echo "--blip2_top_p: top_p value to be passed to blip2 model Default: 1"
         echo "--blip2_output_extension: file extension that blip2 captions will be saved with Default: b2cap"
+#described options
+        echo "--described_workflow_path: Path to the workflow file defining the series of questions to ask the model"
+        echo "--described_model: model to use Default: blip2_opt/caption_coco_opt6.7b"
+        echo "--described_output_extension: file extension to save describd captions with"
 #open flamingo options help
         echo "--flamingo_example_img_dir: path to open flamingo example image/caption pairs"
         echo "--flamingo_model: open_flamingo model to be used for captioning. Default: openflamingo/OpenFlamingo-9B-vitl-mpt7b"
@@ -117,13 +123,19 @@ while [[ "$#" -gt 0 ]]; do
         --wd14_threshold) wd14_threshold="$2"; user_args="${user_args} --wd14_threshold=$2"; shift ;;
         --wd14_filter) wd14_filter="$2"; user_args="${user_args} --wd14_filter=$2"; shift ;;
         --wd14_output_extension) wd14_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension}"; user_args="${user_args} --wd14_output_extension=$2"; shift ;;
-        --blip2_model) blip2_model="$2"; user_args="${user_args} --blip2_model=$2"; shift ;;\
+        --blip2_model) blip2_model="$2"; user_args="${user_args} --blip2_model=$2"; shift ;;
         --blip2_beams) blip2_beams="$2"; user_args="${user_args} --blip2_beams=$2"; shift ;;
         --blip2_use_nucleus_sampling) blip2_use_nucleus_sampling="$2"; user_args="${user_args} --blip2_use_nucleus_sampling=$2"; shift ;;
         --blip2_max_length) blip2_max_length="$2"; user_args="${user_args} --blip2_max_length=$2"; shift ;;
         --blip2_min_length) blip2_min_length="$2"; user_args="${user_args} --blip2_min_length=$2"; shift ;;
         --blip2_top_p) blip2_top_p="$2"; user_args="${user_args} --blip2_top_p=$2"; shift ;;
         --blip2_output_extension) blip2_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension}"; user_args="${user_args} --blip2_output_extension=$2"; shift ;;
+        --described_model) blip2_model="$2"; user_args="${user_args} --described_model=$2"; shift ;;
+        --described_workflow_path) blip2_beams="$2"; user_args="${user_args} --described_workflow_path=$2"; shift ;;
+        --described_output_extension) described_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension},${described_output_extension}"; user_args="${user_args} --described_output_extension=$2"; shift ;;
+
+        
+        
         --flamingo_example_img_dir) flamingo_example_img_dir="$2"; user_args="${user_args} --flamingo_example_img_dir=$2"; shift ;;
         --flamingo_model) flamingo_model="$2"; user_args="${user_args} --flamingo_model=$2"; shift ;;
         --flamingo_min_new_tokens) flamingo_min_new_tokens="$2"; user_args="${user_args} --flamingo_min_new_tokens=$2"; shift ;;
@@ -135,7 +147,7 @@ while [[ "$#" -gt 0 ]]; do
         --flamingo_top_p) flamingo_top_p="$2"; user_args="${user_args} --flamingo_top_p=$2"; shift ;;
         --flamingo_repetition_penalty) flamingo_repetition_penalty="$2"; user_args="${user_args} --flamingo_repetition_penalty=$2"; shift ;;
         --flamingo_length_penalty) flamingo_length_penalty="$2"; user_args="${user_args} --flamingo_length_penalty=$2"; shift ;;
-        --flamingo_output_extension) flamingo_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension}"; user_args="${user_args} --flamingo_output_extension=$2"; shift ;;
+        --flamingo_output_extension) flamingo_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension},${described_output_extension}"; user_args="${user_args} --flamingo_output_extension=$2"; shift ;;
         --summarize_gpt_model) summarize_gpt_model="$2"; user_args="${user_args} --summarize_gpt_model=$2"; shift ;;
         --summarize_gpt_max_tokens) summarize_gpt_max_tokens="$2"; user_args="${user_args} --summarize_gpt_max_tokens=$2"; shift ;;
         --summarize_gpt_temperature) summarize_gpt_temperature="$2"; user_args="${user_args} --summarize_gpt_temperature=$2"; shift ;;
@@ -339,3 +351,26 @@ if [[ "$summarize_with_llama" == "true" ]]; then
     cd "$base_directory"
 fi
 
+generate_described_options() {
+    local options=""
+
+    [ -n "$described_model" ] && options+=" --model_name_and_type=$described_model"
+    [ -n "$input_directory" ] && options+=" --path=$input_directory"
+    [ -n "$described_workflow_path" ] && options+=" --workflow=$described_workflow_path"
+    [ -n "$output_directory" ] && options+=" --output_directory=$output_directory"
+    [ -n "$described_output_extension" ] && options+=" --extension=$described_output_extension"
+    
+    echo "$options"
+}
+        described_workflow_path
+# Running described if set
+if [[ "$use_described" == "true" ]]; then
+    source "$base_directory/blip2/venv_blip2/bin/activate"
+    cd "$base_directory/blip2/described"
+    
+    options=$(generate_described_options)
+    python3 described.py $options
+
+    deactivate
+    cd "$base_directory"
+fi

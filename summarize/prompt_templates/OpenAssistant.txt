@@ -1,0 +1,5 @@
+<|prompter|>{SYSTEM}
+*****************
+{CAPTIONS}
+{TAGS}
+<|endoftext|><|assistant|>{ASSISTANT}

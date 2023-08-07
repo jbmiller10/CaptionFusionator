@@ -131,8 +131,8 @@ while [[ "$#" -gt 0 ]]; do
         --blip2_min_length) blip2_min_length="$2"; user_args="${user_args} --blip2_min_length=$2"; shift ;;
         --blip2_top_p) blip2_top_p="$2"; user_args="${user_args} --blip2_top_p=$2"; shift ;;
         --blip2_output_extension) blip2_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension}"; user_args="${user_args} --blip2_output_extension=$2"; shift ;;
-        --described_model) blip2_model="$2"; user_args="${user_args} --described_model=$2"; shift ;;
-        --described_workflow_path) blip2_beams="$2"; user_args="${user_args} --described_workflow_path=$2"; shift ;;
+        --described_model) described_model="$2"; user_args="${user_args} --described_model=$2"; shift ;;
+        --described_workflow_path) described_workflow_path="$2"; user_args="${user_args} --described_workflow_path=$2"; shift ;;
         --described_output_extension) described_output_extension="$2"; summarize_file_extensions="${wd14_output_extension},${flamingo_output_extension},${blip2_output_extension},${described_output_extension}"; user_args="${user_args} --described_output_extension=$2"; shift ;;
         --flamingo_example_img_dir) flamingo_example_img_dir="$2"; user_args="${user_args} --flamingo_example_img_dir=$2"; shift ;;
         --flamingo_model) flamingo_model="$2"; user_args="${user_args} --flamingo_model=$2"; shift ;;

@@ -34,7 +34,10 @@ def process_images_and_captions(directory, prompt_template, prompt, caption_exts
             if os.path.isfile(caption_file):
                 with open(caption_file, 'r') as f:
                     caption_text = f.read().strip()
-                    if caption_ext == "wd14cap" or caption_ext == "descap":
+                    if caption_ext == "wd14cap":
+                        tags_part = f"Tags {tags_number}: " + caption_text + "\n"
+                        tags_number += 1
+                    elif caption_ext == "descap":
                         tags_part = f"Tags {tags_number}: " + caption_text + "\n"
                         tags_number += 1
                     else:

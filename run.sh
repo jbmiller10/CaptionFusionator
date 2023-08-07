@@ -8,7 +8,7 @@ wd14_output_extension="wd14cap"
 blip2_output_extension="b2cap"
 flamingo_output_extension="flamcap"
 described_output_extension="descap"
-summarize_file_extensions="${wd14_output_extension}" "${flamingo_output_extension}" "${blip2_output_extension}" "${described_output_extension}"
+
 # A variable to store user arguments
 user_args=""
 config_file=""
@@ -170,6 +170,7 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
+summarize_file_extensions="${wd14_output_extension}" "${flamingo_output_extension}" "${blip2_output_extension}" "${described_output_extension}"
 
 # Check if --summarize_with_gpt is set
 if [ ! -z "$summarize_with_gpt" ]; then

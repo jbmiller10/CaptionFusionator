@@ -24,7 +24,7 @@ wd14_stack_models=true
 #blip2_top_p=1.0
 #blip2_output_extension=b2cap
 ## described options
-#described_model=blip2_opt/caption_coco_opt6.7b
+#described_model=blip2_t5/pretrain_flant5xl
 #described_output_extension=descap
 #described_workflow_path=~/CaptionFusionator/blip2/described/workflows/standard.json5
 ## open flamingo options

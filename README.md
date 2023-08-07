@@ -1,6 +1,6 @@
 # CaptionFusionator
 
-This project is intended to provide a modular framework for using an ensemble of image-to-text models and then synthesizing them together into a single caption using a downstream LLM. The intention is to create more accurate, valid, and descriptive captions than a single model is able to provide. This can be useful for fine-tuning generative AI models such as stable diffusion. 
+This project is intended to provide a modular framework for using an ensemble of image-to-text models and then synthesizing them together into a single caption using a downstream LLM. The intention is to create more accurate, valid, and descriptive captions than a single model is able to provide. This can be useful for speeding up the creation of datasets that can then be used for fine-tuning generative AI models such as stable diffusion. 
 
 As it stands, default values assume the user has a Nvidia GPU with at least 24GB of VRAM.
 

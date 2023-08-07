@@ -40,6 +40,8 @@ def process_images_and_captions(directory, prompt_template, prompt, caption_exts
                         caption_number += 1
 
         # Substitute into the template
+        print(caption_part)
+        print(tags_part)
         prompt_string = prompt_template.format(
             SYSTEM=prompt,
             CAPTIONS=caption_part,

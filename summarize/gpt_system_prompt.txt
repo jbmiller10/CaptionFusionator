@@ -10,4 +10,4 @@ Please note that it's important to emphasize the following:
 4.You might face discrepancies among the clues and You should make an informed guess in such cases.
 5.You should focus on providing a description, not a narrative or story.
 6.Do not explain your reasoning. Just provide the caption.
-7.You have a 75 token limit to your response. You should include detail, but overall keep things concise if possible.
+7.You have a 75 token limit to your response. Keep things to one or two sentences.

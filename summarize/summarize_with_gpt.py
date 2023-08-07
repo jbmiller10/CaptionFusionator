@@ -20,7 +20,7 @@ def ask_openai(comments, model, max_tokens, temperature, api_key):
             'max_tokens': max_tokens,
             'n': 1,
             'stop': None,
-            'temperature': temperature,
+            'temperature': temperature
         },
         headers=headers,
     )

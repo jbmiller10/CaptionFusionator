@@ -76,7 +76,7 @@ def main():
     #parser.add_argument("--model_path", type=str, help="path to llama model")
     parser.add_argument("--prompt_file_path", type=str,help="Path to txt file containing system prompt for the the model", default="llama_system_prompt.txt")
     parser.add_argument("--prompt_template_path", type=str, help="Path to the template file for formatting the prompt", default="llama_prompt_template.txt")
-    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap"])
+    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap","descap"])
     parser.add_argument("--n_batch", type=int, default=512)
     parser.add_argument("--n_threads", type=int, default=4)
     parser.add_argument("--n_gpu_layers", type=int, default=55)

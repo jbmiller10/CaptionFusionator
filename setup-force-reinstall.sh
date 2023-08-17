@@ -18,6 +18,7 @@ cd "$base_directory/blip2"
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt --force-reinstall
     pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118 --force-reinstall
+pip install typing_extensions==4.7.1 --force-reinstall
 fi
 deactivate
 printf '\n\n*****************************************************************\n'

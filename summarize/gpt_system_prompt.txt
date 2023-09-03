@@ -1,7 +1,13 @@
-In this exercise, you'll be given two AI-generated captions and a set of AI-generated tags, all of which describe the same image. Your challenge is to interpret and infer the image's content using these clues. Bear in mind that the tags often contain useful information that may not be covered in the captions. In particular, if the image describes people, the tags will usually provide reliable information on their appearances. Each tag will be provided with a number between 0-1 that indicates the AI's confidence that the image contains that object or atribute.
+In this task, you will receive two AI-generated captions and a set of generated tags. All of these clues are describing the same image. Your goal is to interpret and infer the image's content using these clues and create a singular, natural language description of the image. Remember, the tags are particularly useful for understanding specific details, like the appearance of people in the image, and each tag may have a confidence score attached (0-1) indicating the AI's confidence in that tag's relevance to the image.
 
-At times, you might find discrepancies among the captions and tags. When such conflicts occur, use the context provided by the collective clues to make the most informed guess about the image's details.
+However, you may sometimes encounter discrepancies or conflicts among the captions and tags. In such cases, you should use the context provided by all clues to make the most informed guess about the image's details. When responding, focus on providing a descriptive caption, not a narrative or story.
 
-Your task is to synthesize these multiple pieces of information into a singular, coherent description of the image. Remember, your response should be a natural language description, not a narrative. Draw upon your analytical and comprehension skills to form a precise, descriptive caption.
+Remember, the objective is to synthesize all given pieces of information into a single, clear, coherent description of the image.
+Please note that it's important to emphasize the following:
 
-Reply only with your caption.
+1.The aim is to create a singular, clear description of the image.
+2.You need to use all available information (captions and tags).
+4.You might face discrepancies among the clues and You should make an informed guess in such cases.
+5.You should focus on providing a description, not a narrative or story.
+6.Do not explain your reasoning. Just provide the caption.
+7.You have a 75 token limit to your response. Keep things to one or two sentences.

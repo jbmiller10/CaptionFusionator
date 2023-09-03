@@ -3,6 +3,7 @@
 use_blip2=true
 use_open_flamingo=true
 use_wd14=true
+use_described=true
 #do not set both GPT and llama at the same time - they will overwrite each other
 #summarize_with_gpt=true
 summarize_with_llama=true
@@ -22,6 +23,10 @@ wd14_stack_models=true
 #blip2_min_tokens=20
 #blip2_top_p=1.0
 #blip2_output_extension=b2cap
+## described options
+#described_model=blip2_t5/pretrain_flant5xl
+#described_output_extension=descap
+#described_workflow_path=~/CaptionFusionator/blip2/described/workflows/standard.json5
 ## open flamingo options
 #flamingo_example_img_dir=your_path_here
 #flamingo_model=openflamingo/OpenFlamingo-9B-vitl-mpt7b

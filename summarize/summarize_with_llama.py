@@ -28,18 +28,25 @@ def process_images_and_captions(directory, prompt_template, prompt, caption_exts
         caption_part = ""
         tags_part = ""
         caption_number = 1
+        tags_number = 1
         for caption_ext in caption_exts:
             caption_file = f"{base_name}.{caption_ext}"
             if os.path.isfile(caption_file):
                 with open(caption_file, 'r') as f:
                     caption_text = f.read().strip()
                     if caption_ext == "wd14cap":
-                        tags_part = "Tags: " + caption_text
+                        tags_part += f"Tags {tags_number}: " + caption_text + "\n"
+                        tags_number += 1
+                    elif caption_ext == "descap":
+                        tags_part += f"Tags {tags_number}: " + caption_text + "\n"
+                        tags_number += 1
                     else:
                         caption_part += f"Caption {caption_number}: " + caption_text + "\n"
                         caption_number += 1
 
         # Substitute into the template
+        print(caption_part)
+        print(tags_part)
         prompt_string = prompt_template.format(
             SYSTEM=prompt,
             CAPTIONS=caption_part,
@@ -74,7 +81,7 @@ def main():
     #parser.add_argument("--model_path", type=str, help="path to llama model")
     parser.add_argument("--prompt_file_path", type=str,help="Path to txt file containing system prompt for the the model", default="llama_system_prompt.txt")
     parser.add_argument("--prompt_template_path", type=str, help="Path to the template file for formatting the prompt", default="llama_prompt_template.txt")
-    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap"])
+    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap","descap"])
     parser.add_argument("--n_batch", type=int, default=512)
     parser.add_argument("--n_threads", type=int, default=4)
     parser.add_argument("--n_gpu_layers", type=int, default=55)

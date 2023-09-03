@@ -20,7 +20,7 @@ def ask_openai(comments, model, max_tokens, temperature, api_key):
             'max_tokens': max_tokens,
             'n': 1,
             'stop': None,
-            'temperature': temperature,
+            'temperature': temperature
         },
         headers=headers,
     )
@@ -46,13 +46,18 @@ def process_images_and_captions(directory, model, max_tokens, temperature, api_k
             }
         ]
         caption_number = 1
+        tags_number = 1
         for caption_ext in caption_exts:
             caption_file = f"{base_name}.{caption_ext}"
             if os.path.isfile(caption_file):
                 with open(caption_file, 'r') as f:
                     caption_text = f.read()
                     if caption_ext == "wd14cap":
-                        prepend_text = "Tags: "
+                        prepend_text = "Tags {tags_number}: "
+                        tags_number +=1
+                    elif caption_ext == "descap":
+                        prepend_text = "Tags {tags_number}: "
+                        tags_number +=1
                     else:
                         prepend_text = f"Caption {caption_number}: "
                         caption_number += 1
@@ -97,7 +102,7 @@ def main():
     parser.add_argument("--temperature", type=float, help="Temperature for the OpenAI API call", default=0.8)
     parser.add_argument("--api_key", type=str,help="OpenAI API Key")
     parser.add_argument("--prompt_file_path", type=str,help="Path to txt file containing system prompt for the the model", default="gpt_system_prompt.txt")
-    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap"])
+    parser.add_argument("--caption_exts", nargs='+', help="Extensions for caption files", default=["b2cap", "flamcap", "wd14cap","descap"])
 
     args = parser.parse_args()
 

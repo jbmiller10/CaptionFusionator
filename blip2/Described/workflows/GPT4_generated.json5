@@ -1,0 +1,418 @@
+[
+    {
+        "q": "Does the image contain any potentially NSFW content related to nudity or sexual content?",
+        "template": "The image {} contains nudity or sexual content.",
+        "branches": {
+            "contains": {
+                "q": "What type of NSFW content is it: nudity, suggestive pose, intimate activity, or explicit imagery?",
+                "template": "The NSFW content in the image is {}.",
+                "branches": {
+                    "nudity": {
+                        "q": "Is the nudity full, partial, or artistic?",
+                        "template": "The nudity in the image is {}.",
+                        "branches": {
+                            "full nudity": {
+                                "q": "Is the subject facing the camera, turned sideways, or showing their back?",
+                                "template": "The fully nude subject in the image is viewed {}."
+                            },
+                            "partial nudity": {
+                                "q": "Which part of the body is exposed: upper body, lower body, or both?",
+                                "template": "The partial nudity in the image exposes the subject's {},."
+                            },
+                            "artistic nudity": {
+                                "q": "What does the picture focus on: the form, the emotion, or the context?",
+                                "template": "The artistic nude picture in the image focuses on {}."
+                            }
+                        }
+                    },
+                    "suggestive pose": {
+                        "q": "What is the composition: solo individual, couple, or group?",
+                        "template": "The suggestive pose in the image involves {}.",
+                        "branches": {
+                            "solo individual": {
+                                "q": "What is the tone of the pose: playful, seductive, or ambiguous?",
+                                "template": "The individual in the suggestive pose appears to be {}."
+                            },
+                            "couple": {
+                                "q": "Describe their interaction: intimate, teasing, or casual?",
+                                "template": "The interaction between the couple appears to be {}."
+                            },
+                            "group": {
+                                "q": "How are they aligned: symmetrically, randomly, or in a formation?",
+                                "template": "In the image, the group is aligned {}."
+                            }
+                        }
+                    },
+                    "intimate activity": {
+                        "q": "How is the activity portrayed: implied, visible but not explicit, or explicit?",
+                        "template": "In the image, the intimate activity is {}.",
+                        "branches": {
+                            "implied": {
+                                "q": "Are there any specific props or codes suggesting the activity?",
+                                "template": "In the image, the activity is implied through {}."
+                            },
+                            "visible but not explicit": {
+                                "q": "What is the focus: facial expressions, body language, or the surrounding context?",
+                                "template": "The focus of the image is on the {}."
+                            },
+                            "explicit": {
+                                "q": "How do the subjects appear: aware of being watched, oblivious, or seem to be performing?",
+                                "template": "The subjects in the explicit image appear to be {}."
+                            }
+                        }
+                    },
+                    "explicit imagery": {
+                        "q": "What is the nature of the image: a photograph, a drawing, or digitally rendered?",
+                        "template": "The explicit image is a {}.",
+                        "branches": {
+                            "photograph": {
+                                "q": "Who could be the photographer: professional, amateur, or personal?",
+                                "template": "The photograph looks to be taken by a {}."
+                            },
+                            "drawing": {
+                                "q": "What medium might have been used: pencils, charcoals, or pastels?",
+                                "template": "The explicit drawing appears to be made with {}."
+                            },
+                            "digital rendering": {
+                                "q": "What is the style: realistic, cartoonish, or abstract?",
+                                "template": "The digital rendering has a {} style."
+                            }
+                        }
+                    }
+                }
+            },
+            "does not contain": {
+                "q": "What category does the image fall under: photograph, painting, digital art, anime, or cartoon?",
+                "template": "The image is classified as {}.",
+                "branches": {
+                    "photograph": {
+                        "q": "What is the setting of the photograph: day or night, indoors or outdoors?",
+                        "template": "The photograph is taken during the {} and is located {}.",
+                        "branches": {
+                            "day": {
+                                "q": "What is the weather like: sunny, cloudy, or something else?",
+                                "template": "The weather when the photograph was taken during the day was {}."
+                            },
+                            "night": {
+                                "q": "What is visible in the photograph: city lights, stars, or something else?",
+                                "template": "The photograph taken at night includes {}."
+                            },
+                            "indoors": {
+                                "q": "Where was it taken: a personal space, public venue, or workplace?",
+                                "template": "The indoor photograph was taken in a {}."
+                            },
+                            "outdoors": {
+                                "q": "What is the location like: urban, rural, or natural setting?",
+                                "template": "The outdoor photograph was taken in a {} setting."
+                            }
+                        }
+                    },
+                    "painting": {
+                        "q": "What style is the painting: abstract, representational, figurative, or expressive?",
+                        "template": "The painting is classified as {}.",
+                        "branches": {
+                            "abstract": {
+                                "q": "What is the main element: colors, shapes, or lines?",
+                                "template": "The main elements in the abstract painting are {}.",
+                                "branches": {
+                                    "colors": {
+                                        "q": "What is the color family: warm, cool, or neutral?",
+                                        "template": "The colors in the painting mainly belong to the {} family."
+                                    },
+                                    "shapes": {
+                                        "q": "What shapes are present: geometric, organic, or a mix of both?",
+                                        "template": "The shapes in the painting are mainly {}."
+                                    },
+                                    "lines": {
+                                        "q": "What is the nature of the lines: thick, thin, broken, or continuous?",
+                                        "template": "The lines in the painting are mostly {}."
+                                    }
+                                }
+                            },
+                            "representational": {
+                                "q": "What is being represented: still-life, landscape, or human figures?",
+                                "template": "The representational painting depicts {}.",
+                                "branches": {
+                                    "still-life": {
+                                        "q": "What type of objects are represented: everyday items, flowers, or fruits?",
+                                        "template": "The still-life painting depicts {}."
+                                    },
+                                    "landscape": {
+                                        "q": "What type of landscape is it: forest, seaside, mountain, or cityscape?",
+                                        "template": "The landscape painting depicts {}."
+                                    },
+                                    "human figures": {
+                                        "q": "What is the nature of the figures: in action, portrait, or posed?",
+                                        "template": "The figures in the representational painting are {}."
+                                    }
+                                }
+                            },
+                            "figurative": {
+                                "q": "What style is the representation: cubist, surreal, or impressionist?",
+                                "template": "The figurative painting is in the {} style."
+                            },
+                            "expressive": {
+                                "q": "What is being portrayed: emotion, thought, or concept?",
+                                "template": "The expressive painting portrays {}."
+                            }
+                        }
+                    },
+                    "digital art": {
+                        "q": "What technique is used: 3D modeling, vector art, or pixel art?",
+                        "template": "The digital art in the image is a form of {}.",
+                        "branches": {
+                            "3D modeling": {
+                                "q": "What is the style: low poly, sculpted, or realistic rendering?",
+                                "template": "The digital 3D modeling style in the image is {}."
+                            },
+                            "vector art": {
+                                "q": "What is the style: minimalistic, complex, or geometric?",
+                                "template": "The vector art in the image has a {} style."
+                            },
+                            "pixel art": {
+                                "q": "What does it mimic: 8-bit, 16-bit, or modern game visuals?",
+                                "template": "The pixel art in the image mimics {} game visuals."
+                            }
+                        }
+                    },
+                    "anime": {
+                        "q": "What genre does this photo belong to: action, romance, or drama?",
+                        "template": "This anime image belongs to the {} genre.",
+                        "branches": {
+                            "action": {
+                                "q": "What is depicted: a fight scene, a heroic pose, or a vehicle?",
+                                "template": "In the action anime image, {} can be seen."
+                            },
+                            "romance": {
+                                "q": "What are the characters doing: kissing, hugging, or holding hands?",
+                                "template": "The characters in the anime image are {}."
+                            },
+                            "drama": {
+                                "q": "What is the theme: crying, confrontation, or deep thought?",
+                                "template": "The anime image depicts a scene of {}."
+                            }
+                        }
+                    },
+                    "cartoon": {
+                        "q": "What age group is the cartoon meant for: children, teens, or adults?",
+                        "template": "The cartoon image is intended for {}.",
+                        "branches": {
+                            "children": {
+                                "q": "What is depicted: animals, children, or fantasy creatures?",
+                                "template": "In the children's cartoon, {} are depicted."
+                            },
+                            "teens": {
+                                "q": "What is the theme: high school life, superheroes, or everyday life?",
+                                "template": "The cartoon for teens portrays {}."
+                            },
+                            "adults": {
+                                "q": "What type of content is displayed: satire, dark humor, or life situations?",
+                                "template": "The adult cartoon includes {}."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        "q": "What is the main focus of the image: person, animal, place, object, or abstract subject?",
+        "template": "The main focus of the image is a/an {}.",
+        "branches": {
+            "person": {
+                "q": "How many people are depicted: single, few, or many?",
+                "template": "The image shows {} people.",
+                "branches": {
+                    "single person": {
+                        "q": "What is the age of the person: adult, child, or infant?",
+                        "template": "The person in the image is a/an {}.",
+                        "branches": {
+                            "adult": {
+                                "q": "What is the gender of the adult: male, female, or non-binary?",
+                                "template": "The adult in the image is {}."
+                            },
+                            "child": {
+                                "q": "What is the gender of the child: boy, girl, or non-binary?",
+                                "template": "The child in the image is {}."
+                            },
+                            "infant": {
+                                "q": "What is the gender of the infant: boy, girl, or unspecified?",
+                                "template": "The infant in the image is {}."
+                            }
+                        }
+                    },
+                    "few people": {
+                        "q": "What combination of people are depicted (for example, male adults, female children, etc)?",
+                        "template": "The few people in the image include {}."
+                    },
+                    "many people": {
+                        "q": "Describe the crowd: diverse in age and gender or predominantly of one type?",
+                        "template": "The crowd in the image is {}.",
+                        "branches": {
+                            "diverse": {
+                                "q": "Identify prominent groups within the crowd based on gender and age (for example, male adults, female children).",
+                                "template": "The crowd includes prominent groups of {}."
+                            },
+                            "one type": {
+                                "q": "Specify the prevalent demographic in the crowd based on gender and age (for example, male adults, female children).",
+                                "template": "The crowd predominantly consists of {}."
+                            }
+                        }
+                    }
+                }
+            },
+            "animal": {
+                "q": "What type of animal is in the image: mammal, bird, fish, reptile, insect, or another type?",
+                "template": "The animal in the image is a/an {}.",
+                "branches": {
+                    "mammal": {
+                        "q": "What type of mammal is it: domestic or wild?",
+                        "template": "The mammal in the image is {}.",
+                        "branches": {
+                            "domestic mammal": {
+                                "q": "What role does it have: pet, farm animal, or working animal?",
+                                "template": "The mammal in the image is a {}."
+                            },
+                            "wild mammal": {
+                                "q": "How would you categorize it: predator, prey, or neither?",
+                                "template": "The wild mammal is characterized as a {}."
+                            }
+                        }
+                    },
+                    "bird": {
+                        "q": "What is the bird doing: flying, perched, or swimming?",
+                        "template": "The bird in the image is {}."
+                    },
+                    "fish": {
+                        "q": "Where is the fish located: fresh water, salt water, or a tank?",
+                        "template": "The fish in the image is found in {}."
+                    },
+                    "reptile": {
+                        "q": "What type of reptile is it: turtle, snake, lizard, or crocodile?",
+                        "template": "The reptile in the image is a {}."
+                    },
+                    "insect": {
+                        "q": "What is the insect's activity: flying, crawling, or stationary?",
+                        "template": "The insect in the image is {}."
+                    },
+                    "other type": {
+                        "q": "If possible, identify the type of animal.",
+                        "template": "The type of animal in the image is a/an {}."
+                    }
+                }
+            },
+            "place": {
+                "q": "Is the place indoors or outdoors?",
+                "template": "The place depicted in the image is {}.",
+                "branches": {
+                    "indoors": {
+                        "q": "What type of location is it: residential, commercial, industrial, or institutional?",
+                        "template": "The indoor place in the image is {}.",
+                        "branches": {
+                            "residential": {
+                                "q": "What specific part of a residential place is it: a living room, kitchen, bedroom, bathroom, or other?",
+                                "template": "The place is a residential {}."
+                            },
+                            "commercial": {
+                                "q": "What type of commercial place is it: shop, office, restaurant, or other?",
+                                "template": "The commercial place is an {}."
+                            },
+                            "industrial": {
+                                "q": "What type of industrial place is it: factory, construction site, warehouse, or other?",
+                                "template": "The industrial place is a {}."
+                            },
+                            "institutional": {
+                                "q": "What type of institutional place is it: a school, hospital, prison, government office, or other?",
+                                "template": "The institutional place is a {}."
+                            }
+                        }
+                    },
+                    "outdoors": {
+                        "q": "What type of location is it: natural landscape, urban scene, rural area, or body of water?",
+                        "template": "The outdoor place in the image is a {}.",
+                        "branches": {
+                            "natural landscape": {
+                                "q": "What type of natural landscape is it: forest, mountain, desert, or field?",
+                                "template": "The natural landscape is a {}."
+                            },
+                            "urban scene": {
+                                "q": "What type of urban scene is it: cityscape, park, street, or square?",
+                                "template": "The urban scene is {}."
+                            },
+                            "rural area": {
+                                "q": "What type of rural place is it: farm, village, pasture, or other?",
+                                "template": "The rural place is a {}."
+                            },
+                            "body of water": {
+                                "q": "What type of body of water is it: sea, river, lake, or pond?",
+                                "template": "The body of water in the image is a {}."
+                            }
+                        }
+                    }
+                }
+            },
+            "object": {
+                "q": "Is the object in the image man-made or natural?",
+                "template": "The object in the image is {}.",
+                "branches": {
+                    "man-made object": {
+                        "q": "What type of man-made object is it: a tool, vehicle, building, piece of furniture, or a clothing item?",
+                        "template": "The man-made object in the image is a {}."
+                    },
+                    "natural object": {
+                        "q": "What type of natural object is it: a plant, rock, body of water, or landscape?",
+                        "template": "The natural object in the image is a {}."
+                    }
+                }
+            },
+            "abstract subject": {
+                "q": "What does the abstract image represent: a pattern, form, texture, color gradient, or light?",
+                "template": "The abstract element in the image is related to {}."
+            }
+        }
+    },
+    {
+        "q": "Describe the lighting in the image: well-lit, low-light, backlit, or mixed lighting?",
+        "template": "The image is lit in a {} manner.",
+        "branches": {
+            "well-lit": {
+                "q": "What is the source of the light: natural, artificial, or mixed?",
+                "template": "The source of the light is {}."
+            },
+            "low-light": {
+                "q": "How visible is the subject of the image: clearly visible, barely visible, or a silhouette?",
+                "template": "The subject of the image is {} in the low light."
+            },
+            "backlit": {
+                "q": "How is the subject of the image illuminated: a silhouette, semi-visible, or rim-lit?",
+                "template": "The backlit subject in the image is {}."
+            },
+            "mixed lighting": {
+                "q": "What kind of effect does the mixed lighting create: contrast, harmony, or confusion?",
+                "template": "The mixed lighting creates {} in the image."
+            }
+        }
+    },
+    {
+        "q": "Are there any dominant colors in the image: warm colors, cool colors, neutrals, or multicolored?",
+        "template": "The image contains {}.",
+        "branches": {
+            "warm colors": {
+                "q": "Is it more red, orange, or yellow?",
+                "template": "The dominant warm color in the image is {}."
+            },
+            "cool colors": {
+                "q": "Is it more blue, green, or purple?",
+                "template": "The dominant cool color in the image is {}."
+            },
+            "neutrals": {
+                "q": "Is it more white, gray, or black?",
+                "template": "The dominant neutral color in the image is {}."
+            },
+            "multicolored": {
+                "q": "Identify the most prominent colors.",
+                "template": "The most prominent colors in the image are {}."
+            }
+        }
+    }
+]

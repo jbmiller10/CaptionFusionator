@@ -199,7 +199,7 @@ def main(args):
 
 if __name__ == "__main__":
     args = argparse.ArgumentParser("described")
-    args.add_argument("--workflow", type=str, default="./workflows/GPT4_Generated.json5", help="The workflow file to use")
+    args.add_argument("--workflow", type=str, default="./workflows/GPT4_generated.json5", help="The workflow file to use")
     args.add_argument("--model_name_and_type", type=str, default="blip2_t5/pretrain_flant5xl", help='''A compatible model type. One of: blip2_opt/(pretrain_opt2.7b, caption_coco_opt2.7b, pretrain_opt6.7b, caption_coco_opt6.7b), blip2_t5/(pretrain_flant5xl, caption_coco_flant5xl, pretrain_flant5xxl)''')
     args.add_argument("--path", type=str, required=True, help="Path to images to be captioned")
     args.add_argument("--overwrite", default=True, action="store_true", help="Overwrite existing captions")
